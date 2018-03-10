@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public interface Checkout {
 
-    Checkout newInstance();
+    Checkout newInstance(Object pricingRules);
 
     BigDecimal scan(String item);
 

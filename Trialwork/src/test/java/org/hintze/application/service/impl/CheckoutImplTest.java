@@ -3,10 +3,12 @@ package org.hintze.application.service.impl;
 import com.tngtech.java.junit.dataprovider.DataProvider;
 import com.tngtech.java.junit.dataprovider.DataProviderRunner;
 import com.tngtech.java.junit.dataprovider.UseDataProvider;
+import org.hintze.application.service.Checkout;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.math.BigDecimal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,7 +39,11 @@ public class CheckoutImplTest {
 
     @Test
     public void scan() {
-        Assert.assertTrue(true);
+
+        CheckoutImpl checkout = new CheckoutImpl();
+
+        BigDecimal result = checkout.scan("A");
+        Assert.assertEquals(BigDecimal.ZERO,result);
     }
 
     @Test
