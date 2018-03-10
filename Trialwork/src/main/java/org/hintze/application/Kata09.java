@@ -11,6 +11,6 @@ public class Kata09 {
     public static final Logger LOGGER = Logger.getLogger("Kata09");
 
     public static void main(String[] args) {
-        LOGGER.log(Level.INFO, "now checkout");
+        LOGGER.info( "now checkout");
     }
 }
