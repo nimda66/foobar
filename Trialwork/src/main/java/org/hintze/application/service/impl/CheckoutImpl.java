@@ -6,9 +6,11 @@ import java.math.BigDecimal;
 
 public class CheckoutImpl implements Checkout {
 
+    private BigDecimal total = BigDecimal.ZERO;
+
     @Override
     public Checkout newInstance() {
-        return null;
+        return new CheckoutImpl();//TODO hin
     }
 
     @Override
@@ -18,6 +20,12 @@ public class CheckoutImpl implements Checkout {
 
     @Override
     public BigDecimal total() {
-        return null;
+        return total;
+    }
+
+    private void addItemPrice(BigDecimal itemPrice){
+        if (itemPrice!= null) {
+            total = total.add(itemPrice);
+        }
     }
 }
