@@ -1,5 +1,9 @@
 package org.hintze.application;
 
+import org.hintze.application.service.Checkout;
+import org.hintze.application.service.UnitPrice;
+import org.hintze.application.service.impl.CheckoutImpl;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -8,9 +12,16 @@ import java.util.logging.Logger;
  */
 public class Kata09 {
 
-    public static final Logger LOGGER = Logger.getLogger("Kata09");
+    private static final Logger LOGGER = Logger.getLogger("Kata09");
 
     public static void main(String[] args) {
-        LOGGER.info( "now checkout");
+        Checkout checkout = new CheckoutImpl();
+
+        checkout.scan(UnitPrice.A.name());
+        checkout.scan(UnitPrice.A.name());
+        checkout.scan(UnitPrice.D.name());
+        checkout.scan(UnitPrice.C.name());
+        checkout.scan(UnitPrice.B.name());
+        LOGGER.info("Checkout total: " + checkout.total());
     }
 }
