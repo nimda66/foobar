@@ -1,4 +1,4 @@
-package org.hintze.application.service;
+package org.hintze.service;
 
 import java.math.BigDecimal;
 
@@ -6,7 +6,7 @@ public interface Checkout {
 
     Checkout newInstance(Object pricingRules);
 
-    BigDecimal scan(String item);
+    void scan(String item);
 
     BigDecimal total();
 

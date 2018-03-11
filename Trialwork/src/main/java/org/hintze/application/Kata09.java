@@ -1,10 +1,9 @@
 package org.hintze.application;
 
-import org.hintze.application.service.Checkout;
-import org.hintze.application.service.UnitPrice;
-import org.hintze.application.service.impl.CheckoutImpl;
+import org.hintze.model.UnitType;
+import org.hintze.service.Checkout;
+import org.hintze.service.impl.CheckoutImpl;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -17,11 +16,11 @@ public class Kata09 {
     public static void main(String[] args) {
         Checkout checkout = new CheckoutImpl();
 
-        checkout.scan(UnitPrice.A.name());
-        checkout.scan(UnitPrice.A.name());
-        checkout.scan(UnitPrice.D.name());
-        checkout.scan(UnitPrice.C.name());
-        checkout.scan(UnitPrice.B.name());
+        checkout.scan(UnitType.A.name());
+        checkout.scan(UnitType.A.name());
+        checkout.scan(UnitType.D.name());
+        checkout.scan(UnitType.C.name());
+        checkout.scan(UnitType.B.name());
         LOGGER.info("Checkout total: " + checkout.total());
     }
 }
