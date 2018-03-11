@@ -3,7 +3,8 @@ package org.hintze.service.impl;
 import org.hintze.model.SKU;
 import org.hintze.model.UnitType;
 import org.hintze.service.CheckoutService;
-import org.hintze.service.PriceRuleService;
+import org.hintze.service.PriceCalculationService;
+import org.hintze.strategy.PricingRule;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,16 +15,9 @@ import java.util.logging.Logger;
 public class CheckoutServiceServiceImpl implements CheckoutService {
 
     private static final Logger LOGGER = Logger.getLogger("CheckoutServiceServiceImpl");
-    private PriceRuleService.PricingRule pricingRules ;//TODO hin default
+    private PricingRule pricingRules;//TODO hin default
     private final List<SKU> skuList = new ArrayList<>();
-    private final PriceRuleService priceRuleService = new PriceRuleServiceImpl(pricingRules);
-
-    @Override
-    @Deprecated
-    public CheckoutService newInstance(final PriceRuleService.PricingRule pricingRules) {
-        this.pricingRules = pricingRules;
-        return new CheckoutServiceServiceImpl();//TODO hin
-    }
+    private final PriceCalculationService priceCalculationService = new PriceCalculationServiceImpl(pricingRules);
 
     @Override
     public void scan(String unitName) {
@@ -42,7 +36,7 @@ public class CheckoutServiceServiceImpl implements CheckoutService {
             long itemCountByType = skuList.stream().filter(sku -> unitType.equals(sku.getUnitType())).count();
             LOGGER.info("unitType: " + unitType.name() + " |count: " + itemCountByType);
             //TODO hin add special
-            sumTotal.addAndGet(priceRuleService.calculateByType(unitType, itemCountByType));
+            sumTotal.addAndGet(priceCalculationService.calculateByType(unitType, itemCountByType));
         });
 
         return sumTotal.get();

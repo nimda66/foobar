@@ -7,7 +7,7 @@ import org.hintze.service.impl.CheckoutServiceServiceImpl;
 import java.util.logging.Logger;
 
 /**
- * Created by daniel on 09.03.18.
+ * sample application
  */
 public class Kata09 {
 

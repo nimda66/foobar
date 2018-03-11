@@ -1,15 +1,17 @@
 package org.hintze.service.impl;
 
 import org.hintze.model.UnitType;
-import org.hintze.service.PriceRuleService;
+import org.hintze.service.PriceCalculationService;
+import org.hintze.strategy.PricingRule;
 
-import static org.hintze.service.PriceRuleService.PricingRule.discountForA;
+import static org.hintze.strategy.PricingRule.discountForA;
 
-public class PriceRuleServiceImpl implements PriceRuleService {
+
+public class PriceCalculationServiceImpl implements PriceCalculationService {
 
     private PricingRule pricingRules;
 
-    public PriceRuleServiceImpl(PricingRule pricingRules) {
+    public PriceCalculationServiceImpl(PricingRule pricingRules) {
         this.pricingRules= pricingRules;
     }
 
