@@ -4,8 +4,8 @@ import org.hintze.model.SKU;
 import org.hintze.model.UnitType;
 import org.hintze.service.CheckoutService;
 import org.hintze.service.PriceRuleService;
+import org.hintze.service.PricingRule;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,13 +15,13 @@ import java.util.logging.Logger;
 public class CheckoutServiceServiceImpl implements CheckoutService {
 
     private static final Logger LOGGER = Logger.getLogger("CheckoutServiceServiceImpl");
-    private Object pricingRules = new Object();//TODO hin default
+    private PricingRule pricingRules ;//TODO hin default
     private final List<SKU> skuList = new ArrayList<>();
     private final PriceRuleService priceRuleService = new PriceRuleServiceImpl(pricingRules);
 
     @Override
     @Deprecated
-    public CheckoutService newInstance(final Object pricingRules) {
+    public CheckoutService newInstance(final PricingRule pricingRules) {
         this.pricingRules = pricingRules;
         return new CheckoutServiceServiceImpl();//TODO hin
     }
@@ -35,8 +35,7 @@ public class CheckoutServiceServiceImpl implements CheckoutService {
     }
 
     @Override
-    public BigDecimal total() {
-//        skuList.stream().mapToInt(SKU::getPrice).sum();
+    public int total() {
         AtomicInteger sumTotal = new AtomicInteger();
 
         Arrays.stream(UnitType.values()).forEach(unitType -> {
@@ -47,7 +46,7 @@ public class CheckoutServiceServiceImpl implements CheckoutService {
             sumTotal.addAndGet(priceRuleService.calculateByType(unitType, itemCountByType));
         });
 
-        return BigDecimal.valueOf(sumTotal.get());
+        return sumTotal.get();
     }
 
     private void addSKU(SKU sku) {

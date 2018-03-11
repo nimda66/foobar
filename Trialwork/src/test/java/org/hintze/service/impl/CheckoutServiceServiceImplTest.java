@@ -55,7 +55,6 @@ public class CheckoutServiceServiceImplTest {
             LOGGER.info("Test item: " + item);
             checkout.scan(item);
         });
-        BigDecimal resultTotal = checkout.total();
-        Assert.assertEquals(BigDecimal.valueOf(expectedTotal), resultTotal);
+        Assert.assertEquals(expectedTotal, checkout.total());
     }
 }
