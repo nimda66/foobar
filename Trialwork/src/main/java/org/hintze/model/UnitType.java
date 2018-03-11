@@ -5,7 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.Arrays;
 
 /**
- * the standard prices in cent
+ * the articles with standard  unit prices in cent
  */
 public enum UnitType {
     ZERO(0),
@@ -16,6 +16,9 @@ public enum UnitType {
 
     private final int unitPrice;
 
+    /**
+     * @param unitPrice
+     */
     UnitType(int unitPrice) {
         this.unitPrice = unitPrice;
     }
@@ -28,7 +31,8 @@ public enum UnitType {
         if (StringUtils.isBlank(name)) {
             return ZERO;
         }
-        return Arrays.stream(UnitType.values()).filter(v -> v.name().equals(name)).findFirst().get();
+        return Arrays.stream(UnitType.values()).filter(v -> v.name().equals(name)).findFirst()
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     public int getPrice() {

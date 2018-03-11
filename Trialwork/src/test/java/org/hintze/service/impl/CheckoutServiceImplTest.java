@@ -5,17 +5,18 @@ import com.tngtech.java.junit.dataprovider.DataProviderRunner;
 import com.tngtech.java.junit.dataprovider.UseDataProvider;
 import org.apache.commons.lang3.StringUtils;
 import org.hintze.model.UnitType;
+import org.hintze.service.CheckoutService;
+import org.hintze.strategy.impl.DefaultPricingStrategy;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.logging.Logger;
 
 @RunWith(DataProviderRunner.class)
-public class CheckoutServiceServiceImplTest {
-    private static final Logger LOGGER = Logger.getLogger("CheckoutServiceServiceImplTest");
+public class CheckoutServiceImplTest {
+    private static final Logger LOGGER = Logger.getLogger("CheckoutServiceImplTest");
 
     @DataProvider
     public static Object[][] totalsData() {
@@ -30,33 +31,36 @@ public class CheckoutServiceServiceImplTest {
                 {130, "AAA"},
                 {180, "AAAA"},
                 {230, "AAAAA"},
-//                {260, "AAAAAA"},
-//                {160, "AAAB"},
-//                {175, "AAABB"},
-//                {190, "AAABBD"},
-//                {190, "DABABA"}
+                {45, "BB"},
+                {280, "AAAAAA"},//TODO
+                {105, "BBBB"},//TODO
+                {160, "AAAB"},
+                {175, "AAABB"},
+                {190, "AAABBD"},
+                {190, "DABABA"}
         };
     }
 
     @Test
     public void scan() {
-        CheckoutServiceServiceImpl checkout = new CheckoutServiceServiceImpl();
+        CheckoutService checkoutService = new CheckoutServiceImpl();
 
-        checkout.scan(UnitType.A.name());
-        int resultTotal = checkout.total();
+        checkoutService.scan(UnitType.A.name());
+        int resultTotal = checkoutService.total();
         Assert.assertEquals(UnitType.A.getPrice(), resultTotal);
     }
 
     @Test
     @UseDataProvider("totalsData")
     public void total(int expectedTotal, String multiItems) {
-        CheckoutServiceServiceImpl checkout = new CheckoutServiceServiceImpl();
+        //default rules
+        CheckoutService checkoutService = new CheckoutServiceImpl();
 
         String[] splitItems = multiItems.split(StringUtils.EMPTY);
         Arrays.stream(splitItems).forEach(item -> {
             LOGGER.info("Test item: " + item);
-            checkout.scan(item);
+            checkoutService.scan(item);
         });
-        Assert.assertEquals(expectedTotal, checkout.total());
+        Assert.assertEquals(expectedTotal, checkoutService.total());
     }
 }
