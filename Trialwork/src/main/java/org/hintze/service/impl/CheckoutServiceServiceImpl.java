@@ -2,7 +2,7 @@ package org.hintze.service.impl;
 
 import org.hintze.model.SKU;
 import org.hintze.model.UnitType;
-import org.hintze.service.Checkout;
+import org.hintze.service.CheckoutService;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -10,17 +10,17 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class CheckoutImpl implements Checkout {
+public class CheckoutServiceServiceImpl implements CheckoutService {
 
-    private static final Logger LOGGER = Logger.getLogger("CheckoutImpl");
+    private static final Logger LOGGER = Logger.getLogger("CheckoutServiceServiceImpl");
     private Object pricingRules = new Object();//TODO hin default
     private List<SKU> skuList = new ArrayList<>();
 
     @Override
     @Deprecated
-    public Checkout newInstance(final Object pricingRules) {
+    public CheckoutService newInstance(final Object pricingRules) {
         this.pricingRules = pricingRules;
-        return new CheckoutImpl();//TODO hin
+        return new CheckoutServiceServiceImpl();//TODO hin
     }
 
     @Override

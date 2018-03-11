@@ -13,8 +13,8 @@ import java.util.Arrays;
 import java.util.logging.Logger;
 
 @RunWith(DataProviderRunner.class)
-public class CheckoutImplTest {
-    private static final Logger LOGGER = Logger.getLogger("CheckoutImplTest");
+public class CheckoutServiceServiceImplTest {
+    private static final Logger LOGGER = Logger.getLogger("CheckoutServiceServiceImplTest");
 
     @DataProvider
     public static Object[][] totalsData() {
@@ -39,7 +39,7 @@ public class CheckoutImplTest {
 
 //    @Test
 //    public void scan() {
-//        CheckoutImpl checkout = new CheckoutImpl();
+//        CheckoutServiceServiceImpl checkout = new CheckoutServiceServiceImpl();
 //
 //        BigDecimal resultPrice = checkout.scan(UnitType.A.name());
 //        Assert.assertEquals(UnitType.A.getPrice(), resultPrice);
@@ -48,7 +48,7 @@ public class CheckoutImplTest {
     @Test
     @UseDataProvider("totalsData")
     public void total(int expectedTotal, String multiItems) {
-        CheckoutImpl checkout = new CheckoutImpl();
+        CheckoutServiceServiceImpl checkout = new CheckoutServiceServiceImpl();
 
         String[] splitItems = multiItems.split(StringUtils.EMPTY);
         Arrays.stream(splitItems).forEach(item -> {

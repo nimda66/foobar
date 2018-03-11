@@ -1,8 +1,8 @@
 package org.hintze.application;
 
 import org.hintze.model.UnitType;
-import org.hintze.service.Checkout;
-import org.hintze.service.impl.CheckoutImpl;
+import org.hintze.service.CheckoutService;
+import org.hintze.service.impl.CheckoutServiceServiceImpl;
 
 import java.util.logging.Logger;
 
@@ -14,13 +14,13 @@ public class Kata09 {
     private static final Logger LOGGER = Logger.getLogger("Kata09");
 
     public static void main(String[] args) {
-        Checkout checkout = new CheckoutImpl();
+        CheckoutService checkoutService = new CheckoutServiceServiceImpl();
 
-        checkout.scan(UnitType.A.name());
-        checkout.scan(UnitType.A.name());
-        checkout.scan(UnitType.D.name());
-        checkout.scan(UnitType.C.name());
-        checkout.scan(UnitType.B.name());
-        LOGGER.info("Checkout total: " + checkout.total());
+        checkoutService.scan(UnitType.A.name());
+        checkoutService.scan(UnitType.A.name());
+        checkoutService.scan(UnitType.D.name());
+        checkoutService.scan(UnitType.C.name());
+        checkoutService.scan(UnitType.B.name());
+        LOGGER.info("CheckoutService total: " + checkoutService.total());
     }
 }

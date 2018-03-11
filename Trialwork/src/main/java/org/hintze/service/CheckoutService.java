@@ -2,9 +2,9 @@ package org.hintze.service;
 
 import java.math.BigDecimal;
 
-public interface Checkout {
+public interface CheckoutService {
 
-    Checkout newInstance(Object pricingRules);
+    CheckoutService newInstance(Object pricingRules);
 
     void scan(String item);
 
