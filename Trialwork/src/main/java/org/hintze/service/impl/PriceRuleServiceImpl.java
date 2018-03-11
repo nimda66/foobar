@@ -2,26 +2,23 @@ package org.hintze.service.impl;
 
 import org.hintze.model.UnitType;
 import org.hintze.service.PriceRuleService;
-import org.hintze.service.PricingRule;
+
+import static org.hintze.service.PriceRuleService.PricingRule.discountForA;
 
 public class PriceRuleServiceImpl implements PriceRuleService {
 
     private PricingRule pricingRules;
 
     public PriceRuleServiceImpl(PricingRule pricingRules) {
-        this.pricingRules = pricingRules;
+        this.pricingRules= pricingRules;
     }
 
     @Override
     public int calculateByType(UnitType unitType, long count) {
 
-        int sumByType= (int) (unitType.getPrice()*count);
-//
-//        pricingRules.discountForC();
-////                .applyDiscount(int);
-
-
-        return 666;
+        int sumByType = (int) (unitType.getPrice() * count);
+        int result = discountForA().applyDiscount(sumByType);
+        return result;
     }
 
     public PricingRule getPricingRules() {

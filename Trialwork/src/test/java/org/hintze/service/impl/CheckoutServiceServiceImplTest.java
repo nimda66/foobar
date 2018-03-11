@@ -19,7 +19,7 @@ public class CheckoutServiceServiceImplTest {
     @DataProvider
     public static Object[][] totalsData() {
         return new Object[][]{
-//                {0, ""},
+                {0, ""},
                 {50, "A"},
                 {80, "AB"},
                 {115, "CDBA"},

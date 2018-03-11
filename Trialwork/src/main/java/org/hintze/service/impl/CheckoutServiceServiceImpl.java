@@ -4,7 +4,6 @@ import org.hintze.model.SKU;
 import org.hintze.model.UnitType;
 import org.hintze.service.CheckoutService;
 import org.hintze.service.PriceRuleService;
-import org.hintze.service.PricingRule;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,13 +14,13 @@ import java.util.logging.Logger;
 public class CheckoutServiceServiceImpl implements CheckoutService {
 
     private static final Logger LOGGER = Logger.getLogger("CheckoutServiceServiceImpl");
-    private PricingRule pricingRules ;//TODO hin default
+    private PriceRuleService.PricingRule pricingRules ;//TODO hin default
     private final List<SKU> skuList = new ArrayList<>();
     private final PriceRuleService priceRuleService = new PriceRuleServiceImpl(pricingRules);
 
     @Override
     @Deprecated
-    public CheckoutService newInstance(final PricingRule pricingRules) {
+    public CheckoutService newInstance(final PriceRuleService.PricingRule pricingRules) {
         this.pricingRules = pricingRules;
         return new CheckoutServiceServiceImpl();//TODO hin
     }
