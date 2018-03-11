@@ -13,13 +13,13 @@ public class WeekendPricingStrategy implements PricingStrategy {
 
     @Override
     public Map<UnitType, PricingRuleCalculation> rules() {
-        rules.put(UnitType.ZERO, (unitPrice) -> 0);
+        rules.put(UnitType.ZERO, (sumByType) -> 0);
         rules.put(UnitType.A,
-                (unitPrice) -> unitPrice - 14);
+                (sumByType) -> sumByType - 14);
         rules.put(UnitType.B,
-                (unitPrice) -> unitPrice - 13);
-        rules.put(UnitType.C, (unitPrice) -> unitPrice - 12);
-        rules.put(UnitType.D, (unitPrice) -> unitPrice - 11);
+                (sumByType) -> sumByType - 13);
+        rules.put(UnitType.C, (sumByType) -> sumByType - 12);
+        rules.put(UnitType.D, (sumByType) -> sumByType - 11);
 
         return rules;
     }

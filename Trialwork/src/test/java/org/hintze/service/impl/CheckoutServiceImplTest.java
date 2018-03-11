@@ -32,8 +32,10 @@ public class CheckoutServiceImplTest {
                 {180, "AAAA"},
                 {230, "AAAAA"},
                 {45, "BB"},
-                {280, "AAAAAA"},//TODO
-                {105, "BBBB"},//TODO
+                {260, "AAAAAA"},
+                {310, "AAAAAAA"},
+                {75, "BBB"},
+                {90, "BBBB"},
                 {160, "AAAB"},
                 {175, "AAABB"},
                 {190, "AAABBD"},

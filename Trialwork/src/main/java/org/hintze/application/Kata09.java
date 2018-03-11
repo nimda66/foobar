@@ -9,7 +9,9 @@ import org.hintze.strategy.impl.WeekendPricingStrategy;
 import java.util.logging.Logger;
 
 /**
- * sample application, 2 different rule sets
+ * sample application,uses 2 different rule sets
+ *
+ * demo , contains no database, spring or error handling
  */
 public class Kata09 {
 
@@ -23,7 +25,7 @@ public class Kata09 {
         checkoutService.scan(UnitType.D.name());
         checkoutService.scan(UnitType.C.name());
         checkoutService.scan(UnitType.B.name());
-        LOGGER.info("CheckoutService total: " + checkoutService.total());
+        LOGGER.info("CheckoutService total: " + checkoutService.total()+" cent");
 
         //different strategy
         PricingStrategy weekendPricingStrategy = new WeekendPricingStrategy();
@@ -33,6 +35,6 @@ public class Kata09 {
         weekendCheckoutService.scan(UnitType.D.name());
         weekendCheckoutService.scan(UnitType.C.name());
         weekendCheckoutService.scan(UnitType.B.name());
-        LOGGER.info("WeekendCheckoutService total: " + weekendCheckoutService.total());
+        LOGGER.info("WeekendCheckoutService total: " + weekendCheckoutService.total()+" cent");
     }
 }

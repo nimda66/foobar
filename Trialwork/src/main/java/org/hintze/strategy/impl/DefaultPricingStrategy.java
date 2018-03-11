@@ -7,19 +7,27 @@ import org.hintze.strategy.PricingStrategy;
 import java.util.Map;
 
 /**
- * standard rules for special prices
+ * standard rules for special prices by {@link UnitType}
  */
-public  class DefaultPricingStrategy implements PricingStrategy {
+public class DefaultPricingStrategy implements PricingStrategy {
 
     @Override
     public Map<UnitType, PricingRuleCalculation> rules() {
-        rules.put(UnitType.ZERO,(unitPrice) -> 0);
+        rules.put(UnitType.ZERO, (sumByType) -> 0);
         rules.put(UnitType.A,
-                (unitPrice) -> unitPrice >= 150 ? unitPrice - 20 : unitPrice);
+                (sumByType) -> {
+                    int numberOfItems = (int) sumByType / UnitType.A.getPrice();
+                    int numberOfDiscounts = (int) numberOfItems / 3;
+                    return sumByType - numberOfDiscounts * 20;
+                });
         rules.put(UnitType.B,
-                (unitPrice) -> unitPrice >= 60 ? unitPrice - 15 : unitPrice);
-        rules.put(UnitType.C, (unitPrice) -> unitPrice);
-        rules.put(UnitType.D, (unitPrice) -> unitPrice);
+                (sumByType) -> {
+                    int numberOfItems = (int) sumByType / UnitType.B.getPrice();
+                    int numberOfDiscounts = (int) numberOfItems / 2;
+                    return sumByType - numberOfDiscounts * 15 ;
+                });
+        rules.put(UnitType.C, (sumByType) -> sumByType);
+        rules.put(UnitType.D, (sumByType) -> sumByType);
 
         return rules;
     }
